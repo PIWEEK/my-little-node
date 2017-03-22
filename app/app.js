@@ -1,5 +1,8 @@
 const Koa = require("koa");
-const Router = require('koa-router');
+const Router = require("koa-router");
+const Transactor = require("./transactor");
+const BodyParser = require("koa-bodyparser");
+
 const app = new Koa();
 const router = new Router();
 
@@ -21,15 +24,19 @@ router.use(async function (ctx, next) {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
+// bodyparser
+
+router.use(BodyParser());
+
 // router
 
-router.get('/', function (ctx) {
-    ctx.body = {obj: 27, obj2: "hola"};
+router.post('/novelty', function (ctx) {
+    Transactor.novelty(ctx.request.body);
+    ctx.status = 200;
 });
 
 app
   .use(router.routes())
   .use(router.allowedMethods());
 
-console.log("Listening in port 3000")
-app.listen(3000);
+module.exports = app;
