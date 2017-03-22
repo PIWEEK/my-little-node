@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/PIWEEK/my-little-node#readme",
   "dependencies": {
+    "js.spec": "^1.0.0-1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.0.1"
