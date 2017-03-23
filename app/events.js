@@ -40,3 +40,7 @@ exports.handleCreatePage = function({path, title}) {
     return page;
 }
 
+exports.handleDeletePage = function({id}) {
+    repo.deletePage(id);
+}
+

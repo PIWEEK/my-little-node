@@ -9,6 +9,8 @@ exports.novelty = function (evt) {
 
   if (evt.type === Events.CREATE_PAGE) {
     return Events.handleCreatePage(evt.payload);
+  } else if (evt.type === Events.DELETE_PAGE) {
+    return Events.handleDeletePage(evt.payload);
   } else {
     throw "Invalid event type";
   }
