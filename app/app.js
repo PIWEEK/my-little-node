@@ -36,7 +36,7 @@ router.post('/novelty', function (ctx) {
   let evtData = ctx.request.body;
   ctx.assert(Events.validate(evtData), 400, "Invalid event");
   result = Transactor.novelty(Events.create(evtData));
-  console.log(result);
+  console.log("->", result);
   ctx.status = 200;
 });
 

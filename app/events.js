@@ -1,5 +1,6 @@
 const {spec, valid} = require("js.spec");
 const pages = require("../core/pages");
+const widgets = require("../core/widgets");
 const repo = require("../repo");
 
 
@@ -35,12 +36,20 @@ exports.DELETE_WIDGET = "events:delete-widget";
 
 
 exports.handleCreatePage = function({path, title}) {
-    let page = pages.create(path, title);
-    repo.storePage(page);
-    return page;
+  let page = pages.create(path, title);
+  repo.storePage(page);
+  return page;
 }
 
 exports.handleDeletePage = function({id}) {
-    repo.deletePage(id);
+  repo.deletePage(id);
+}
+
+exports.handleCreateWidget = function({pageId, slot, title, content}) {
+  let page = repo.getPage(pageId);
+  let widget = widgets.create(title, content);
+  page.attachWidget(slot, widget);
+  repo.storePage(page);
+  return widget;
 }
 

@@ -5,6 +5,11 @@ class Page {
     this.id = id;
     this.path = path;
     this.title = title;
+    this.slots = [];
+  }
+
+  attachWidget(slot, widget) {
+    this.slots[slot] = widget;
   }
 }
 
