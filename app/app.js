@@ -1,7 +1,9 @@
 const Koa = require("koa");
 const Router = require("koa-router");
-const Transactor = require("./transactor");
 const BodyParser = require("koa-bodyparser");
+
+const Transactor = require("./transactor");
+const Events = require("./events");
 
 const app = new Koa();
 const router = new Router();
@@ -31,9 +33,10 @@ router.use(BodyParser());
 // router
 
 router.post('/novelty', function (ctx) {
-  let evt = ctx.request.body;
-  ctx.assert(Transactor.validateEvent(evt), 400, "Invalid event");
-  Transactor.novelty(evt);
+  let evtData = ctx.request.body;
+  ctx.assert(Events.validate(evtData), 400, "Invalid event");
+  result = Transactor.novelty(Events.create(evtData));
+  console.log(result);
   ctx.status = 200;
 });
 

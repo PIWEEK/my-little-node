@@ -1,24 +1,16 @@
-const {spec, valid} = require("js.spec");
-
-const EventSpec = spec.map({
-  type: spec.string,
-  data: spec.object,
-});
-
+const Events = require("./events");
 
 let txLog = [];
 
+exports.novelty = function (evt) {
 
-const validateEvent = function (evt) {
-  return valid(EventSpec, evt);
-};
-
-const novelty = function (evt) {
   txLog.push(evt);
   console.log(evt);
+
+  if (evt.type === Events.CREATE_PAGE) {
+    return Events.handleCreatePage(evt.payload);
+  } else {
+    throw "Invalid event type";
+  }
 };
 
-module.exports = {
-  validateEvent: validateEvent,
-  novelty: novelty
-};
