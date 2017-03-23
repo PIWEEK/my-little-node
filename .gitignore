@@ -3,6 +3,12 @@ logs
 *.log
 npm-debug.log*
 
+# File backups and locks
+*.swp
+*.swo
+*~
+.~lock.*
+
 # Runtime data
 pids
 *.pid
