@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "supervisor": "./node_modules/.bin/supervisor -w app index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.0.1"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
   }
 }
