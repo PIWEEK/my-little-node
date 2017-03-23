@@ -1,15 +1,11 @@
-const {nextId} = require("../repo/idgen");
-
 class Widget {
-  constructor(id, title, content) {
-    this.id = id;
+  constructor(title, content) {
     this.title = title;
     this.content = content;
   }
 }
 
 exports.create = function(title, content) {
-  id = nextId();
-  return new Widget(id, title, content);
+  return new Widget(title, content);
 }
 

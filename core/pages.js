@@ -1,11 +1,13 @@
-const {nextId} = require("../repo/idgen");
-
 class Page {
-  constructor(id, path, title) {
+  constructor(id, path, title, slots) {
     this.id = id;
     this.path = path;
     this.title = title;
-    this.slots = [];
+    this.slots = slots;
+  }
+
+  setId(id) {
+    this.id = id;
   }
 
   attachWidget(slot, widget) {
@@ -14,7 +16,11 @@ class Page {
 }
 
 exports.create = function(path, title) {
-  id = nextId();
-  return new Page(id, path, title);
+  return new Page(null, path, title, []);
+}
+
+
+exports.restore = function({id, path, title, slots}) {
+  return new Page(id, path, title, slots);
 }
 

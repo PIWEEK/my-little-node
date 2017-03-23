@@ -1,7 +1,7 @@
 const {spec, valid} = require("js.spec");
 const pages = require("../core/pages");
 const widgets = require("../core/widgets");
-const repo = require("../repo");
+const repo = require("../repo/sql_repo");
 
 
 class Event {
@@ -35,21 +35,21 @@ exports.CREATE_WIDGET = "events:create-widget";
 exports.DELETE_WIDGET = "events:delete-widget";
 
 
-exports.handleCreatePage = function({path, title}) {
+exports.handleCreatePage = async function({path, title}) {
   let page = pages.create(path, title);
-  repo.storePage(page);
+  page = await repo.createPage(page);
   return page;
 }
 
-exports.handleDeletePage = function({id}) {
-  repo.deletePage(id);
+exports.handleDeletePage = async function({id}) {
+  await repo.deletePage(id);
 }
 
-exports.handleCreateWidget = function({pageId, slot, title, content}) {
-  let page = repo.getPage(pageId);
+exports.handleCreateWidget = async function({pageId, slot, title, content}) {
+  let page = await repo.getPage(pageId, pages.restore);
   let widget = widgets.create(title, content);
   page.attachWidget(slot, widget);
-  repo.storePage(page);
+  await repo.updatePage(page);
   return widget;
 }
 

@@ -32,10 +32,10 @@ router.use(BodyParser());
 
 // router
 
-router.post('/novelty', function (ctx) {
+router.post('/novelty', async function (ctx) {
   let evtData = ctx.request.body;
   ctx.assert(Events.validate(evtData), 400, "Invalid event");
-  result = Transactor.novelty(Events.create(evtData));
+  result = await Transactor.novelty(Events.create(evtData));
   console.log("->", result);
   ctx.status = 200;
 });
