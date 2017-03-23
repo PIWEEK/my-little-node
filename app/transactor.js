@@ -5,11 +5,16 @@ const EventSpec = spec.map({
   data: spec.object,
 });
 
+
+let txLog = [];
+
+
 const validateEvent = function (evt) {
   return valid(EventSpec, evt);
 };
 
 const novelty = function (evt) {
+  txLog.push(evt);
   console.log(evt);
 };
 
