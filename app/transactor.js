@@ -1,19 +1,19 @@
 const {spec, valid} = require("js.spec");
 
 const EventSpec = spec.map({
-    type: spec.string,
-    data: spec.object,
+  type: spec.string,
+  data: spec.object,
 });
 
 const validateEvent = function (evt) {
-    return valid(EventSpec, evt);
+  return valid(EventSpec, evt);
 };
 
 const novelty = function (evt) {
-    console.log(evt);
+  console.log(evt);
 };
 
 module.exports = {
-    validateEvent: validateEvent,
-    novelty: novelty
+  validateEvent: validateEvent,
+  novelty: novelty
 };

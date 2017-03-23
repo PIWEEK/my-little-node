@@ -31,10 +31,10 @@ router.use(BodyParser());
 // router
 
 router.post('/novelty', function (ctx) {
-    let evt = ctx.request.body;
-    ctx.assert(Transactor.validateEvent(evt), 400, "Invalid event");
-    Transactor.novelty(evt);
-    ctx.status = 200;
+  let evt = ctx.request.body;
+  ctx.assert(Transactor.validateEvent(evt), 400, "Invalid event");
+  Transactor.novelty(evt);
+  ctx.status = 200;
 });
 
 app
